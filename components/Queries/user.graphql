@@ -1,0 +1,14 @@
+mutation validateUser($id: ID!, $email: String!, $locale: ID!) {
+    validateUser(
+        id: $id
+        email: $email
+        locale: $locale
+    ) {
+        status
+        user{
+            id
+            fullName
+            email
+        }
+    }
+}

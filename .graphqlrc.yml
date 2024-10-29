@@ -1,0 +1,2 @@
+schema: 'schema.graphql'
+documents: 'components/Queries/*.{graphql,js,ts,jsx,tsx}'

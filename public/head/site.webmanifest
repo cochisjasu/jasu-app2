@@ -1,0 +1,19 @@
+{
+    "name": "Jasu",
+    "short_name": "Jasu",
+    "icons": [
+        {
+            "src": "/head/192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/head/512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#FBFAF8",
+    "background_color": "#FBFAF8",
+    "display": "standalone"
+}

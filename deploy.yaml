@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: jasu-front
+  name: jasu-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jasu-front
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: jasu-front
+    spec:
+      containers:
+      - image: registry.digitalocean.com/bluepixel/jasu-front:v1.0.26
+        name: jasu-front
+        resources: {}
+status: {}

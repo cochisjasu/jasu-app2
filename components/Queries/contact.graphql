@@ -1,0 +1,8 @@
+mutation sendComment($input: NewComment!)
+{
+    sendComment(input: $input)
+}
+
+mutation sendUserComment($input: NewUserComment!){
+    sendUserComment(input: $input)
+}

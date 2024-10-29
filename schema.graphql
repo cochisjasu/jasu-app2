@@ -1,0 +1,793 @@
+type AgentSession {
+  id: ID!
+  isBot: Boolean!
+  isMobile: Boolean!
+  isTablet: Boolean!
+  isDesktop: Boolean!
+  isSmartTv: Boolean!
+  clientOs: ClientOS!
+  clientBrowser: ClientBrowser!
+  clientBrowserVersion: String
+  clientPlatform: ClientPlatform!
+  remoteSession: RemoteSession!
+  session: Session
+  timezone: Timezone!
+  createdAt: Date!
+  locale: Locale!
+}
+
+type ClientBrowser {
+  id: ID!
+  name: String!
+}
+
+type ClientOS {
+  id: ID!
+  name: String!
+}
+
+type ClientPlatform {
+  id: ID!
+  name: String!
+}
+
+type Country {
+  id: ID!
+  name: String!
+  dialCode: Int!
+  payPalAccepted: Boolean
+  defaultLocale: Locale
+}
+
+type CountryConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [CountryEdge]!
+}
+
+type CountryEdge {
+  node: Country!
+}
+
+input CountryFilter {
+  query: String
+  lsId: [ID]
+  id: [ID]
+}
+
+input CreateCountry {
+  id: ID
+  nameEs: String
+  nameEn: String
+  dialCode: Int
+  payPalAccepted: Boolean
+  cardsAccepted: Boolean
+  lsId: Int
+}
+
+input CreateFruit {
+  id: ID
+  nameEs: String!
+  nameEn: String!
+  category: ID!
+}
+
+input CreateFruitCategory {
+  id: ID!
+  nameEs: String!
+  nameEn: String!
+}
+
+input CreateFruitVariety {
+  id: ID
+  nameEs: String!
+  nameEn: String!
+  image: String
+  fruit: ID!
+}
+
+input CreateHarvest {
+  id: ID
+  month: Int!
+  organic: Boolean!
+  fruitVariety: ID!
+  country: ID!
+}
+
+input CreatePresentation {
+  id: ID
+  nameEs: String!
+  nameEn: String!
+  image: String!
+  category: ID!
+  descriptionEs: String!
+  descriptionEn: String!
+}
+
+input CreatePresentationCategory {
+  id: ID!
+  nameEs: String!
+  nameEn: String!
+}
+
+input CreatePrice {
+  id: ID
+  date: String!
+  price: Float!
+  country: ID
+  drums: Int
+  volume: Float
+  product: ID
+  organic: Boolean!
+  fruit: ID
+  presentation: ID
+}
+
+input CreateProduct {
+  id: ID
+  fruitVariety: ID!
+  presentation: ID!
+  description: String!
+}
+
+input CreateProductFile {
+  id: ID
+  name: String!
+  url: String!
+  product: ID!
+}
+
+scalar Date
+
+input DefaultFilter {
+  query: String
+  id: [ID]
+  exclude: [ID]
+}
+
+input DefaultPropertyInput {
+  name: String!
+}
+
+type File {
+  id: ID!
+  status: FileStatus!
+  type: FileType!
+  name: String
+  url: String!
+  size: Int!
+  checksum: String
+  width: Int
+  height: Int
+  duration: Int
+  hlsUrl: String
+  dashUrl: String
+  mp3Url: String
+  pdfUrl: String
+  progress: Float
+  createdAt: String!
+  updatedAt: String!
+  preview: FilePreview
+}
+
+type FileClass {
+  id: ID!
+  name: String!
+  name_en: String!
+  name_es: String!
+  name_pt: String!
+  name_de: String!
+  name_fr: String!
+  name_it: String!
+  name_nl: String!
+}
+
+type FileClassConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [FileClassEdge]!
+}
+
+type FileClassEdge {
+  node: FileClass!
+}
+
+type FileConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [FileEdge]!
+}
+
+type FileEdge {
+  node: File!
+}
+
+input FileFilter {
+  path: String
+  query: String
+  id: [ID!]
+  status: [ID]
+  class: [ID]
+  type: [ID]
+}
+
+type FilePreview {
+  id: ID!
+  jpegUrl: String!
+  webpUrl: String!
+  jpegSize: Int!
+  webpSize: Int!
+  jpegChecksum: String
+  webpChecksum: String
+  width: Int!
+  height: Int!
+  file: File!
+  index: Int!
+}
+
+type FilePreviewConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [FilePreviewEdge]!
+}
+
+type FilePreviewEdge {
+  node: FilePreview!
+}
+
+type FileProcessError {
+  file: File!
+  message: String!
+}
+
+type FileStatus {
+  id: ID!
+  name: String!
+  name_en: String!
+  name_es: String!
+  name_pt: String!
+  name_de: String!
+  name_fr: String!
+  name_it: String!
+  name_nl: String!
+}
+
+type FileStatusConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [FileStatusEdge]!
+}
+
+type FileStatusEdge {
+  node: FileStatus!
+}
+
+type FileType {
+  id: ID!
+  name: String!
+  name_en: String!
+  name_es: String!
+  name_pt: String!
+  name_de: String!
+  name_fr: String!
+  name_it: String!
+  name_nl: String!
+  mime: String!
+  extension: String!
+  class: FileClass!
+}
+
+type FileTypeConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [FileTypeEdge]!
+}
+
+type FileTypeEdge {
+  node: FileType!
+}
+
+input FileTypeFilter {
+  class: [ID]
+}
+
+type FileUpload {
+  file: File!
+  policy: UploadPolicy!
+}
+
+type Fruit {
+  id: ID!
+  name: String!
+  category: FruitCategory!
+  picture: String
+  description: String
+}
+
+type FruitCategory {
+  id: ID!
+  name: String!
+}
+
+type FruitConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [FruitEdge]!
+}
+
+type FruitEdge {
+  node: Fruit!
+}
+
+input FruitPresentationFilter {
+  query: String
+  category: [ID]
+}
+
+type FruitVariety {
+  id: ID!
+  name: String!
+  fullName: String!
+  picture: String
+  description: String
+  fruit: Fruit!
+}
+
+type FruitVarietyConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [FruitVarietyEdge]!
+}
+
+type FruitVarietyEdge {
+  node: FruitVariety!
+}
+
+input FruitVarietyFilter {
+  query: String
+  fruit: [ID]
+  category: [ID]
+  onlyWithImages: Boolean
+}
+
+type Harvest {
+  id: ID!
+  month: Int!
+  organic: Boolean!
+  fruitVariety: FruitVariety!
+  country: Country!
+}
+
+type HarvestConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [HarvestEdge]!
+}
+
+type HarvestEdge {
+  node: Harvest!
+}
+
+input HarvestFilter {
+  fruitVariety: [ID]
+  fruit: [ID]
+  country: [ID]
+  month: [Int]
+}
+
+input HarvestInput {
+  id: ID
+  fruitVariety: ID
+  country: ID
+  month: Int
+}
+
+scalar JSON
+
+type Locale {
+  id: ID!
+  nativeName: String!
+}
+
+type LogoutResponse {
+  forced: Boolean!
+  logout: Boolean!
+}
+
+type Mutation {
+  sendComment(input: NewComment!): Boolean!
+  sendUserComment(input: NewUserComment!): Boolean!
+  signUpload(name: String!, path: String): FileUpload
+  verifyUpload(id: ID!): File
+  deleteFile(id: ID!): Boolean!
+  updateCountry(input: CreateCountry!): Country!
+  createPrice(input: CreatePrice!): Product
+  syncPricesData: Int
+  createHarvest(input: CreateHarvest!): Harvest
+  syncHarvestsData: Int
+  syncAll: Boolean
+  createFruitCategory(input: CreateFruitCategory!): FruitCategory
+  createFruit(input: CreateFruit!): Fruit
+  createFruitVariety(input: CreateFruitVariety!): FruitVariety
+  createPresentationCategory(input: CreatePresentationCategory!): PresentationCategory
+  createPresentation(input: CreatePresentation!): Presentation
+  createProduct(input: CreateProduct!): Product
+  createProductFile(input: CreateProductFile!): ProductFile
+  syncFruitCategory: SyncResult
+  syncPresentationCategory: SyncResult
+  syncFruit: SyncResult
+  syncFruitVariety: SyncResult
+  syncPresentation: SyncResult
+  syncProduct: SyncResult
+  login(email: String!, password: String!, nonce: ID!): Session
+  logout: Boolean
+  nonce: Nonce!
+  signUp(input: SignUp!): SignUpResponse!
+  generateRecovery(email: String!, gre: String!): Boolean!
+  redeemRecovery(recovery: String!, password: String!): RecoveryResponse!
+  setLocale(locale: ID!): Locale!
+  setTimezone(id: ID, name: String): Boolean!
+  validateUser(id: ID!, email: String!, locale: ID!): ValidateResponse!
+}
+
+input NewComment {
+  name: String!
+  email: String!
+  phone: String!
+  companyName: String!
+  message: String!
+}
+
+input NewUserComment {
+  topic: String!
+  message: String!
+}
+
+type Nonce {
+  id: ID!
+  data: String!
+}
+
+type Presentation {
+  id: ID!
+  name: String!
+  picture: String!
+  description: String!
+  category: PresentationCategory!
+}
+
+type PresentationCategory {
+  id: ID!
+  name: String!
+}
+
+type PresentationConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [PresentationEdge]!
+}
+
+type PresentationEdge {
+  node: Presentation!
+}
+
+type Price {
+  id: ID!
+  date: String!
+  price: Float
+  product: Product!
+  country: Country
+  drums: Int
+  volume: Float
+  organic: Boolean!
+}
+
+type PriceConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [PriceEdge]!
+}
+
+type PriceEdge {
+  node: Price!
+}
+
+input PriceFilter {
+  query: String
+  product: [ID]
+  country: [ID]
+  year: Int
+}
+
+input PriceInput {
+  id: ID
+  product: ID
+  country: ID
+  date: String
+}
+
+type Product {
+  id: ID!
+  fruitVariety: FruitVariety!
+  presentation: Presentation!
+  description: String!
+  picture: String!
+  shelfLife: String!
+  productFiles: [ProductFile!]!
+}
+
+type ProductConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [ProductEdge]!
+}
+
+type ProductEdge {
+  node: Product!
+}
+
+type ProductFile {
+  id: ID!
+  name: String!
+  url: String!
+  productId: ID!
+}
+
+type ProductFileConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [ProductFileEdge]!
+}
+
+type ProductFileEdge {
+  node: ProductFile!
+}
+
+input ProductFileFilter {
+  name: String
+  product: [ID]
+  id: [ID]
+}
+
+input ProductFilter {
+  query: String
+  search: String
+  fruitVariety: [String]
+  presentation: [String]
+  id: [ID]
+}
+
+input ProductInput {
+  id: ID
+  fruitVariety: ID
+  presentation: ID
+}
+
+type Query {
+  fileStatus(id: ID!): FileStatus
+  fileStatuses: FileStatusConnection
+  fileClass(id: ID!): FileClass
+  fileClasses: FileClassConnection
+  fileType(id: ID, mime: String, extension: String): FileType
+  fileTypes(pag: Int = 0, num: Int = 20, ord: String = "id", asc: Boolean = true, filter: FileTypeFilter): FileTypeConnection
+  file(id: ID!): File
+  files(pag: Int = 0, num: Int = 20, ord: String = "updatedAt", asc: Boolean = false, filter: FileFilter): FileConnection
+  filePreview(id: ID, file: ID, height: Int): FilePreview
+  filePreviews(pag: Int = 0, num: Int = 20, ord: String = "index", asc: Boolean = true, file: ID!, height: Int): FilePreviewConnection
+  countries(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: CountryFilter): CountryConnection
+  country(id: ID!): Country
+  regions(pag: Int = 0, num: Int = 20, ord: String = "name", asc: Boolean = true, filter: RegionFilter): RegionConnection
+  region: Region
+  locales: [Locale]!
+  prices(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: PriceFilter): PriceConnection
+  price(input: PriceInput!): Price
+  harvests(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: HarvestFilter): HarvestConnection
+  harvest(input: HarvestInput!): Harvest
+  fruitCategories: [FruitCategory!]!
+  fruitCategory(id: ID!): FruitCategory
+  fruits(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: FruitPresentationFilter): FruitConnection
+  fruit(id: ID!): Fruit
+  fruitVarieties(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: FruitVarietyFilter): FruitVarietyConnection
+  fruitVariety(id: ID!): FruitVariety
+  presentationCategories: [PresentationCategory!]!
+  presentationCategory(id: ID!): PresentationCategory
+  presentations(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: FruitPresentationFilter): PresentationConnection
+  presentation(id: ID!): Presentation
+  products(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: ProductFilter): ProductConnection
+  product(input: ProductInput!): Product
+  productFiles(pag: Int = 0, num: Int = 20, ord: String, asc: Boolean = true, filter: ProductFileFilter): ProductFileConnection
+  productFile(id: ID!): ProductFile
+  version: String!
+  time: String!
+  agent: AgentSession!
+  timezones(pag: Int = 0, num: Int = 20, ord: String = "id", asc: Boolean = true, filter: TimezoneFilter): TimezoneConnection
+  timezone(id: ID, name: String): Timezone
+  user(id: ID, email: String): User
+  users(pag: Int = 0, num: Int = 20, ord: String = "updatedAt", asc: Boolean = false, filter: UserFilter): UserConnection!
+}
+
+type RecoveryResponse {
+  status: Int!
+  session: Session
+}
+
+type Region {
+  id: ID!
+  name: String!
+  country: Country!
+}
+
+type RegionConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [RegionEdge]!
+}
+
+type RegionEdge {
+  node: Region!
+}
+
+input RegionFilter {
+  query: String
+  country: [ID]
+  id: [ID]
+}
+
+type RemoteAddress {
+  id: ID!
+  type: String!
+  lat: Float
+  lon: Float
+  region: Region
+  country: Country
+  timezone: Timezone
+  city: String
+  zipCode: String
+}
+
+type RemoteSession {
+  id: ID!
+  remoteAddress: RemoteAddress!
+  isDst: Boolean
+  agentId: ID!
+  createdAt: Date!
+}
+
+type Session {
+  id: ID!
+  user: User!
+  agentId: ID
+  createdAt: Date!
+  loggedOutAt: String
+}
+
+input SignUp {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  companyName: String!
+  companyWebsite: String!
+  gre: String!
+}
+
+type SignUpResponse {
+  status: Int!
+  user: User
+}
+
+type Subscription {
+  createdFile(id: ID, path: String): File
+  updatedFile(id: ID): File
+  deletedFile(id: ID, path: String): File
+  createdFilePreview: FilePreview
+  updatedFilePreview(id: ID!): FilePreview
+  deletedFilePreview(id: ID!): FilePreview
+  fileAddedPreview(file: ID!, index: Int, height: Int): FilePreview
+  loggedIn: Session!
+  loggedOut: LogoutResponse!
+  changedRemoteSession: RemoteSession!
+  changedTimezone: Timezone!
+  changedLocale: Locale!
+}
+
+type SyncResult {
+  added: Int!
+  updated: Int!
+  deleted: Int!
+}
+
+type Timezone {
+  id: ID!
+  name: String!
+  gmtOffset: Float
+}
+
+type TimezoneConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [TimezoneEdge]!
+}
+
+type TimezoneEdge {
+  node: Timezone!
+}
+
+input TimezoneFilter {
+  query: String
+  id: [ID]
+}
+
+type UploadPolicy {
+  url: String!
+  fields: String!
+}
+
+type User {
+  id: ID!
+  connected: Boolean!
+  connectedAt: Date
+  disconnectedAt: Date
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  email: String!
+  companyName: String!
+  companyWebsite: String!
+  validated: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type UserConnection {
+  totalCount: Int!
+  totalEdges: Int!
+  hasMore: Boolean!
+  pag: Int!
+  edges: [UserEdge!]!
+}
+
+type UserEdge {
+  node: User!
+}
+
+input UserFilter {
+  query: String
+  id: [ID]
+}
+
+type ValidateResponse {
+  status: Int!
+  user: User
+}
+

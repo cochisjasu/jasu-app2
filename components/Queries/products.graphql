@@ -1,0 +1,171 @@
+query fruitCategories
+{
+    fruitCategories{
+        id
+        name
+    }
+}
+
+query fruits($pag: Int, $num: Int, $ord: String, $asc:Boolean, $filter: FruitPresentationFilter)
+{
+    fruits(
+        pag: $pag
+        num: $num
+        ord: $ord
+        asc: $asc
+        filter: $filter
+    ) {
+        totalCount
+        totalEdges
+        hasMore
+        pag
+        edges {
+            node {
+                id
+                name
+                picture
+                description
+            }
+        }
+    }
+}
+
+query fruitVarieties($pag: Int, $num: Int, $ord: String, $asc:Boolean, $filter: FruitVarietyFilter)
+{
+    fruitVarieties(
+        pag: $pag
+        num: $num
+        ord: $ord
+        asc: $asc
+        filter: $filter
+    ) {
+        totalCount
+        totalEdges
+        hasMore
+        pag
+        edges {
+            node {
+                id
+                name
+                fullName
+                picture
+                description
+                fruit{
+                    id
+                    name
+                    picture
+                    description
+                }
+            }
+        }
+    }
+}
+
+query presentationCategories
+{
+    presentationCategories {
+        id
+        name
+    }
+}
+
+query presentations($pag: Int, $num: Int, $ord: String, $asc:Boolean, $filter: FruitPresentationFilter)
+{
+    presentations(
+        pag: $pag
+        num: $num
+        ord: $ord
+        asc: $asc
+        filter: $filter
+    ) {
+        totalCount
+        totalEdges
+        hasMore
+        pag
+        edges {
+            node {
+                id
+                name
+                picture
+                description
+            }
+        }
+    }
+}
+
+query products($pag: Int, $num: Int, $ord: String, $asc:Boolean, $filter: ProductFilter)
+{
+    products(
+        pag: $pag
+        num: $num
+        ord: $ord
+        asc: $asc
+        filter: $filter
+    ) {
+        totalCount
+        totalEdges
+        hasMore
+        pag
+        edges {
+            node {
+                id
+                picture
+                description
+                fruitVariety{
+                    id
+                    name
+                    fullName
+                    picture
+                    description
+                    fruit{
+                        id
+                        name
+                        picture
+                        description
+                    }
+                }
+                presentation{
+                    id
+                    name
+                    picture
+                    description
+                }
+            }
+        }
+    }
+}
+
+query product($input: ProductInput!)
+{
+    product(
+        input: $input
+    ) {
+        id
+        description
+        picture
+        fruitVariety{
+            id
+            name
+            fullName
+            picture
+            description
+            fruit{
+                id
+                name
+                picture
+                description
+            }
+        }
+        presentation{
+            id
+            name
+            picture
+            description
+        }
+        productFiles{
+            id
+            name
+            url
+        }
+    }
+}

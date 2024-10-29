@@ -1,0 +1,170 @@
+query getAgent {
+    agent {
+        id
+        isMobile
+        isTablet
+        isDesktop
+        locale{
+            id
+            nativeName
+        }
+        remoteSession {
+            id
+            remoteAddress {
+                id
+                type
+                country{
+                    id
+                    name
+                    defaultLocale{
+                        id
+                        nativeName
+                    }
+                }
+            }
+            isDst
+        }
+        session {
+            id
+            user {
+                id
+                firstName
+                lastName
+                fullName
+                email
+                companyName
+                companyWebsite
+            }
+        }
+        timezone {
+            id
+            name
+            gmtOffset
+        }
+    }
+}
+
+query locales {
+    locales {
+        id
+        nativeName
+    }
+}
+
+mutation setLocale($locale: ID!) {
+    setLocale(
+        locale: $locale
+    ) {
+        id
+        nativeName
+    }
+}
+
+mutation getNonce {
+    nonce {
+        id
+        data
+    }
+}
+
+mutation login($email: String!, $password: String!, $nonce: ID!) {
+    login(
+        email: $email
+        password: $password
+        nonce: $nonce
+    ) {
+        id
+        createdAt
+        user {
+            id
+            firstName
+            lastName
+            fullName
+            email
+            companyName
+            companyWebsite
+        }
+    }
+}
+
+mutation logout {
+    logout
+}
+
+mutation signUp($input: SignUp!) {
+    signUp(
+        input: $input
+    ) {
+        status
+        user{
+            id
+            firstName
+            fullName
+        }
+    }
+}
+
+
+mutation generateRecovery($email: String!, $gre: String!) {
+    generateRecovery(
+        email: $email
+        gre: $gre
+    )
+}
+
+mutation redeemRecovery($recovery: String!, $password: String!) {
+    redeemRecovery(
+        recovery: $recovery
+        password: $password
+    ) {
+        status
+        session
+        {
+            id
+            agentId
+            createdAt
+            loggedOutAt
+            user{
+                id
+                firstName
+                lastName
+                fullName
+                email
+                companyName
+                companyWebsite
+            }
+        }
+    }
+}
+
+subscription loggedIn {
+    loggedIn {
+        id
+        user {
+            id
+            firstName
+            lastName
+            fullName
+            email
+            companyName
+            companyWebsite
+        }
+        agentId
+        createdAt
+        loggedOutAt
+    }
+}
+
+subscription loggedOut {
+    loggedOut{
+        forced
+        logout
+    }
+}
+
+subscription changedLocale {
+    changedLocale{
+        id
+        nativeName
+    }
+}

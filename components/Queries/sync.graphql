@@ -1,0 +1,54 @@
+mutation syncAll{
+    syncAll
+}
+
+mutation syncFruitCategory{
+    syncFruitCategory{
+        added
+        updated
+        deleted
+    }
+}
+
+mutation syncPresentationCategory{
+    syncPresentationCategory{
+        added
+        updated
+        deleted
+    }
+}
+
+mutation syncFruit{
+    syncFruit{
+        added
+        updated
+        deleted
+    }
+}
+mutation syncFruitVariety{
+    syncFruitVariety{
+        added
+        updated
+        deleted
+    }
+}
+mutation syncPresentation{
+    syncPresentation{
+        added
+        updated
+        deleted
+    }
+}
+mutation syncProduct{
+    syncProduct{
+        added
+        updated
+        deleted
+    }
+}
+mutation syncPricesData{
+    syncPricesData
+}
+mutation syncHarvestsData{
+    syncHarvestsData
+}
