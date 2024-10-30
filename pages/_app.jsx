@@ -14,11 +14,17 @@ import { onError } from "@apollo/client/link/error";
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { SubscriptionClient } from 'subscriptions-transport-ws'
 
-import {Context, Theme, Nav, Footer, parseCookieHeader} from '../components/App';
+import {Context, Theme, Nav, Footer} from '../components/App';
 import baseConfig from '../base.config';
 import {getAgent, loggedIn, loggedOut, changedLocale} from "../components/Queries/session.graphql";
 import { dictionary } from '../components/Locale/Dictionary';
 import {WhatsAppButton} from '../components/Home';
+
+import ReactGA from 'react-ga';
+ 
+  import 'bootstrap/dist/css/bootstrap.min.css';
+const TRACKING_ID = "UA-109673698-1";
+ReactGA.initialize(TRACKING_ID);
 
 const httpLink = new HttpLink({
     fetch,
@@ -100,6 +106,8 @@ const getApolloClient = (agentId = null) => {
 
 class JasuApp extends App {
 
+    lastUrl = '';
+
     constructor(props) {
         super(props);
         dictionary.setLanguage(props?.agent?.locale?.id || 'es');
@@ -170,6 +178,22 @@ class JasuApp extends App {
                 this.state.dictionary.setLanguage(locale.id)
             }),
         });
+
+        this.storeAnalytics();
+    }  
+
+    componentDidUpdate() {
+        this.storeAnalytics();
+    }
+
+    storeAnalytics() {
+        const url = window.location.pathname + window.location.search;
+        if(url !== this.lastUrl) {
+            ReactGA.pageview(url);
+            console.log('stored');
+            console.log(url);
+        }
+        this.lastUrl = url;
     }
 
     render() {
@@ -187,7 +211,8 @@ class JasuApp extends App {
                 <link rel="apple-touch-icon" sizes="180x180" href="/head/180x180.png"/>
                 <link rel="icon" type="image/png" sizes="32x32" href="/head/32x32.png"/>
                 <link rel="icon" type="image/png" sizes="16x16" href="/head/16x16.png"/>
-                <link rel="mask-icon" href="/head/icon.svg" color="#ffffff"/>
+                <link rel="mask-icon" href="/head/icon.svg" color="#ffffff"/>    
+               
             </Head>
             {this.apolloClient && <ApolloProvider client={this.apolloClient}>
                 <Context.Provider value={this.state}>

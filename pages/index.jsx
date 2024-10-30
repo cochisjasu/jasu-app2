@@ -8,6 +8,7 @@ import Home from '../components/Home';
 import Products from '../components/Products';
 import { fruitVarieties, fruitCategories } from '../components/Queries/products.graphql';
 import { Context } from '../components/App';
+import Modals from '../components/Modals/Modals';
 
 export default function Index() {
   const [data, setData] = useState(new Array(8).fill({}));
@@ -94,6 +95,8 @@ export default function Index() {
 
   return (
     <Fragment>
+	<script src="https://jasu.us/js/gtag2.js"></script>
+	<script dangerouslySetInnerHTML={{__html: 'try{Typekit.load({ async: true });}catch(e){}'}}></script>
       <Home.Banner/>
       <Home.Products data={data}/>
       <Home.Video/>

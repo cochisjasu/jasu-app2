@@ -8,15 +8,18 @@ import { Context } from "../../../components/App";
 import Products from "../../../components/Products";
 import { product, products } from '../../../components/Queries/products.graphql';
 import { prices, harvests } from '../../../components/Queries/prices.graphql';
+// import useAnalyticsEventTracker from '../../../components/Analytics/useAnalyticsEventTracker';
 
 const tableTitles = [
     {
         key: 'presentation',
-        label: 'Presentación'
+        label: 'Presentation'
+        // label: 'Presentación'
     },
     {
         key: 'country',
-        label: 'País'
+        label: 'Country'
+        // label: 'País'
     },
     {
         key: 'drums',
@@ -24,11 +27,13 @@ const tableTitles = [
     },
     {
         key: 'volume',
-        label: 'Súma de volumen (MT)'
+        label: 'Available volume(MT)'
+        // label: 'Súma de volumen (MT)'
     },
     {
         key: 'price',
-        label: 'Precio'
+        label: 'Price (USD/Kg)'
+        // label: 'Precio'
     },
 ]
 
@@ -233,6 +238,7 @@ export default function ProductDetails()
                 fetchPolicy: "no-cache",
             });
             if (errors) if (errors.length > 0) throw new Error(errors[0].message);
+            // console.log(data);
             return data.prices;
         }
         const response = await submit();
@@ -247,8 +253,8 @@ export default function ProductDetails()
             return true;
         }).map(item => ({
             ...item,
-            country: item.country.name,
-            countryCode: item.country.id,
+            country: item.country ? item.country.name : '',
+            countryCode: item.country ? item.country.id : '',
             presentation: item.product.presentation.name,
             price: item.price ? formatMoney(item.price) : null,
         }))
@@ -271,6 +277,10 @@ export default function ProductDetails()
             const index = years.indexOf(year);
             newTendenciesData[index].data.push({x:item.date,y:item.price})
         }
+        // const gaEventTracker = useAnalyticsEventTracker('Chart Price');
+        // gaEventTracker('Get Price', 'Price for ' + productID);
+        // console.log('TENDENCIES');
+        // console.log(newTendenciesData);
         setPriceTendenciesData(newTendenciesData);
     }, [productKey, loggedIn, agent]);
 
@@ -334,10 +344,10 @@ export default function ProductDetails()
         <Fragment>
             <Products.Information loggedIn={loggedIn} productInfo={productInfo} handleOpenDialog={handleOpenDialog}/>
             <Products.OtherProducts process={processID} relatedProducts={relatedProducts}/>
+            <Products.OtherProcess product={productID} relatedProcesses={relatedProcesses}/>
             <Products.Stastistics varietyData={varietyData} pricesTableData={priceTableData}/>
             <Products.PriceCharts loggedIn={loggedIn} priceTendenciesData={priceTendenciesData}/>
-            <Products.OtherProcess product={productID} relatedProcesses={relatedProcesses}/>
-            <Products.Contact form={contactForm} onFormChange={handleChangeContactForm} loggedIn={loggedIn} contactName={contactInfo?.name} handleOpenDialog={handleOpenDialog}/>
+             <Products.Contact form={contactForm} onFormChange={handleChangeContactForm} loggedIn={loggedIn} contactName={contactInfo?.name} handleOpenDialog={handleOpenDialog}/>
             {loggedIn && <Products.ContactDialog form={contactForm} onFormChange={handleChangeContactForm} open={viewDialog} onClose={handleCloseDialog}/>}
         </Fragment>
     )

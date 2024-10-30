@@ -1,7 +1,7 @@
 import LocalizedStrings from 'react-localization';
 
 const dictionary = new LocalizedStrings({
-    es:{
+    es: {
         404: {
             title: "Página no encontrada",
             description: "Está página no existe o ha sido removida.",
@@ -61,10 +61,12 @@ const dictionary = new LocalizedStrings({
             userNotFound: "No se encontró el usuario deseado",
             userAlreadyConfirmed: "El usuario con el correo: {0} ya se encuentra validado",
             confirmMessage: "El usuario con el correo: {0} ha sido validado",
+            acceptTxt: "Al marcar esta casilla, doy mi consentimiento expreso para recibir mensajes de texto de acuerdo con nuestra Política de privacidad de JASU.",
+            acceptForm: "Entiendo que, al enviar este formulario, puedo optar por no recibir más mensajes de texto en cualquier momento respondiendo STOP.",
         },
         nav: {
             home: "Inicio",
-            products: "Productos",
+            products: "Catálogo",
             contact: "Contacto",
             login: "Iniciar sesión",
             logout: "Cerrar sesión",
@@ -73,6 +75,7 @@ const dictionary = new LocalizedStrings({
             search: "Buscar",
             serverError: "No se pudo conectar con servidor",
             localesError: "No se encontraron idiomas disponibles",
+            notice: "Aviso de privacidad",
         },
         footer: {
             USOffice: "Oficina corporativa EUA",
@@ -88,7 +91,7 @@ const dictionary = new LocalizedStrings({
             productsTitle: "Nuestros productos",
             howItWorksTitle: "¿Cómo funciona Jasu?",
             howItWorksDescription: "Nuestros años de experiencia en el mercado nos han permitido crear una extensa red de proveedores de cítricos y sus derivados en todo el mundo, desde productores hasta procesadores.\n\nAdicionalmente tenemos los contactos y la red de transporte para trasladar lo que necesitas del fabricante a las puertas de tu empresa.",
-            howItWorksVideo: "/video/jasu_es.mp4",
+            howItWorksVideo: "/video/video.mp4",
             serviceTitle: "Conoce nuestros servicios",
             customerTitle: "Servicio al Cliente",
             customerDescription: "Nuestro equipo está dedicado a dar un seguimiento puntual, resolviendo y solucionando las preguntas y dudas de nuestros clientes.",
@@ -98,9 +101,9 @@ const dictionary = new LocalizedStrings({
             financialDescription: "Aseguramos la transacción cubriendo a ambas partes:\nProveedores: Financiamiento de órdenes de compra y protección de crédito.\nClientes: Financiamiento de la cadena de suministro.",
         },
         search: {
-            products: "Productos",
+            products: "Por Fruto",
             productsError: "No se encontraron productos",
-            presentation: "Presentación",
+            presentation: "Por Proceso",
             showResults: "Mostrando {0}-{1} resultados",
             fruits: "cítricos y frutos",
             presentations: "procesos",
@@ -151,8 +154,8 @@ const dictionary = new LocalizedStrings({
             description: "This page doesn't exist or has been removed",
         },
         date: {
-            shortMonth: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dec'],
-            month: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            shortMonth: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            month: ['January', 'February', 'March', 'April', 'May', 'August', 'July', 'August', 'September', 'October', 'November', 'December'],
         },
         general: {
             showProducts: "We invite you to have a look at our products and services!",
@@ -205,10 +208,12 @@ const dictionary = new LocalizedStrings({
             userNotFound: "User not found",
             userAlreadyConfirmed: "User {0} is already verified",
             confirmMessage: "User {0} has been verified",
+            acceptTxt: "By Checking, this checkbox , I hereby provide my express consent to receive text messages in accordance with our Privacy Policy from JASU.",
+            acceptForm: "I understand that upon submission of this form, I may opt out of receiving further text messages at any time by replying STOP.",
         },
         nav: {
             home: "Home",
-            products: "Products",
+            products: "Catalogue",
             contact: "Contact",
             login: "Log In",
             logout: "Log Out",
@@ -217,6 +222,7 @@ const dictionary = new LocalizedStrings({
             search: "Search",
             serverError: "Failed connection to server",
             localesError: "Failed to retrieve available languages",
+            notice: "Privacy Notice",
         },
         footer: {
             USOffice: "Corporative Office USA",
@@ -232,7 +238,7 @@ const dictionary = new LocalizedStrings({
             productsTitle: "Our products",
             howItWorksTitle: "How Jasu works?",
             howItWorksDescription: "Our years of experience in the market have allowed us to create a wide network of citrics producers and their derivatives all around the world, from producers to manufacturers.\n\nIn addition we have the contacts and the transportation network to freight forward from the producer to your company’s facilities.",
-            howItWorksVideo: "/video/jasu_en.mp4",
+            howItWorksVideo: "/video/video.mp4",
             serviceTitle: "Learn about our services",
             customerTitle: "Customer Service",
             customerDescription: "Our team is dedicated to providing timely follow-up, providing solutions and resolving the questions and doubts of our clients.",
@@ -242,9 +248,9 @@ const dictionary = new LocalizedStrings({
             financialDescription: "We secure the transaction by covering both parties:\nSuppliers: Purchase order financing and credit protection.\nCustomers: Supply chain financing.",
         },
         search: {
-            products: "Products",
+            products: "By Fruit",
             productsError: "Products not found",
-            presentation: "Presentation",
+            presentation: "By Proccess",
             showResults: "Showing {0}-{1} results",
             fruits: "citrics and fruits",
             presentations: "processes",

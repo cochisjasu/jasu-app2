@@ -7,7 +7,7 @@ import {useTheme} from '@material-ui/core/styles';
 import Image from 'next/image';
 
 import Context from "./Context";
-
+import { useRouter } from 'next/router'
 const useStyles = makeStyles(theme => ({
     root: {
         padding: 0,
@@ -97,7 +97,23 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('lg')]: {
             padding: 0,
         }
-    }
+    },
+    buttonsItem: {
+        color: alpha(theme.palette.white.main, .8),
+        textDecoration: 'underline',
+        height: 48,
+        '&:hover': {
+            cursor: 'pointer',
+             
+        },
+        [theme.breakpoints.up('lg')]: {
+            borderBottom: 0,
+            whiteSpace: 'nowrap',
+            '&:hover': {
+              
+            },
+        },
+    },
 }));
 
 export default function Footer() {
@@ -121,7 +137,7 @@ export default function Footer() {
             </Box>
         )
     };
-
+    const router = useRouter()
     return (
         <Container maxWidth={false} component='footer' className={classes.root}>
             <Box className={classes.sectionContact}>
@@ -138,6 +154,7 @@ export default function Footer() {
             </Box>
             <Box className={classes.sectionCopyright}>
                 <Box className={classes.copyContent}>
+                    <Typography className={classes.buttonsItem} onClick={() => router.push('/notice')}>{dictionary.nav.notice}</Typography>
                     <Typography className={classes.text}>{dictionary.footer.emailUs}</Typography>
                     <Typography className={classes.text}>{dictionary.footer.copyright}</Typography>
                 </Box>

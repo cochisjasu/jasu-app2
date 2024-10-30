@@ -20,7 +20,7 @@ const useStyles = props => makeStyles(theme => ({
     },
     chartFrame: {
         position: 'relative',
-        backgroundColor: theme.palette.white.main,
+        backgroundColor: theme.palette.white.mpacain,
         border: '1px solid #EFEFEC',
         borderRadius: '20px',
     },
@@ -138,7 +138,7 @@ export default function PriceCharts({loggedIn, priceTendenciesData})
                     <ResponsiveLine
                         data={getYearData()}
                         margin={{ top: 50, right: 30, bottom: 50, left: 50 }}
-                        xScale={{ format: "%Y-%m-%d", type: "time", useUTC: false, precision: 'day' }}
+                        xScale={{ format: "%Y-%m-%d", type: "time", useUTC: false, precision: 'day', }}
                         yScale={{
                             type: 'linear',
                             min: 0,
@@ -158,6 +158,7 @@ export default function PriceCharts({loggedIn, priceTendenciesData})
                             tickRotation: 0,
                             legendOffset: 36,
                             legendPosition: 'middle',
+                            tickValues: 'every month'
                         }}
                         axisLeft={{
                             format: (value) => <tspan className={classes.tickLabel}>{formatMoney(value)}</tspan>,

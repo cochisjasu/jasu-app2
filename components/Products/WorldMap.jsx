@@ -4,7 +4,8 @@ import IsoToLatLong from 'country-iso-to-coordinates';
 import { Add, Remove } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 
-const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+// const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 const useStyles = makeStyles(theme => ({
   root: {

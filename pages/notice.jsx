@@ -5,7 +5,8 @@ import { useContext } from 'react';
 
 import { Context } from '../components/App';
 import Session from '../components/Session';
-import ContactForm from "../components/Contact/ContactForm";
+import Notice from "../components/Notice/Notice";
+ 
 import {sendComment} from "../components/Queries/contact.graphql";
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -77,21 +78,13 @@ export default function Contact() {
   }, [])
 
   return (
-
     <Fragment>
- <script   src="/js/gtag.js"> </script>
       <Session.SessionPanel>
         {shownMessage ? 
           <Session.Message message={dictionary.session.signUpMessage} /> : 
-          <ContactForm
-            onSubmit={onSubmit}
-            contactData={contactData}
-            handleInputChange={handleInputChange}
-            loading={loading}
-          />
+          <Notice children={dictionary.nav.notice}/>
         }
       </Session.SessionPanel>
     </Fragment>
-
   );
 }

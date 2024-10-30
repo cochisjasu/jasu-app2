@@ -7,6 +7,7 @@ import sha256 from "sha256";
 import App from "../components/App";
 import Session from '../components/Session';
 import {getNonce, login} from "../components/Queries/session.graphql";
+import useAnalyticsEventTracker from '../components/Analytics/useAnalyticsEventTracker';
 
 export default function LoginView() {
   const [loading, setLoading] = useState(false);
@@ -61,6 +62,9 @@ export default function LoginView() {
 
     try{
       await submitLogin();
+
+      const gaEventTracker = useAnalyticsEventTracker('Login');
+      gaEventTracker(loginData.email.split('@')[0], new Date().toLocaleString());
     }
     catch (error)
     {
